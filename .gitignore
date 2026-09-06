@@ -1,9 +1,0 @@
-# Fichiers de configuration et secrets
-*.env
-config.yml
-secrets.yml
-
-# Fichiers d'environnement de dev (IntelliJ / Maven)
-.idea/
-*.iml
-target/
