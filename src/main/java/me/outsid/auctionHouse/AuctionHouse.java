@@ -7,6 +7,11 @@ public final class AuctionHouse extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("AuctionHouse activé !");
+
+
+        if (getCommand("auction") != null) {
+            getCommand("auction").setExecutor(new AuctionCommand());
+        }
     }
 
     @Override

@@ -4,3 +4,7 @@ version: '${version}'
 main: me.outsid.auctionHouse.AuctionHouse
 api-version: '26.1.2'
 load: POSTWORLD
+commands:
+  auction:
+    description: Ouvre l'hôtel des ventes
+    usage: /auction
