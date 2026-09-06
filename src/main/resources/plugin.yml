@@ -1,0 +1,6 @@
+name: AuctionHouse
+version: '${version}'
+
+main: me.outsid.auctionHouse.AuctionHouse
+api-version: '26.1.2'
+load: POSTWORLD
