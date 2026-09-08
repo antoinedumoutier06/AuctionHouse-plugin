@@ -1,0 +1,38 @@
+package me.outsid.auctionHouse;
+
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.Arrays;
+
+public class ItemBuilder {
+
+    private static final MiniMessage MM = MiniMessage.miniMessage();
+    private final ItemStack item;
+    private final ItemMeta meta;
+
+    public ItemBuilder(Material material) {
+        this.item = new ItemStack(material);
+        this.meta = item.getItemMeta();
+    }
+
+    public ItemBuilder name(String miniMessageText) {
+        meta.displayName(MM.deserialize(miniMessageText).decoration(TextDecoration.ITALIC, false));
+        return this;
+    }
+
+    public ItemBuilder lore(String... lines) {
+        meta.lore(Arrays.stream(lines)
+                .map(line -> MM.deserialize(line).decoration(TextDecoration.ITALIC, false))
+                .toList());
+        return this;
+    }
+
+    public ItemStack build() {
+        item.setItemMeta(meta);
+        return item;
+    }
+}
