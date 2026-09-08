@@ -10,10 +10,7 @@ public class AuctionListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        // Vérifie si l'inventaire du HAUT est bien un AuctionGui
         if (event.getInventory().getHolder() instanceof AuctionGui) {
-
-            // ANNULE LE CLIC SYSTÉMATIQUEMENT (empêche vol, shift-click, swap)
             event.setCancelled(true);
         }
     }
