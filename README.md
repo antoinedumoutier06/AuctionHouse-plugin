@@ -1,1 +1,1 @@
-<img width="396" height="464" alt="Capture d&#39;écran 2026-09-07 015155" src="https://github.com/user-attachments/assets/9e0d2ee4-68d4-4409-ba04-7974a6f77863" />
+<img width="800" height="450" alt="auctionhouse" src="https://github.com/user-attachments/assets/9022ce9e-c20e-41da-90e8-5f44434fc477" />
