@@ -1,37 +1,39 @@
-package me.outsid.auctionHouse;
+package me.outsid.auctionHouse.gui;
 
+import me.outsid.auctionHouse.util.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-public class AuctionCommand implements CommandExecutor {
+public class AuctionGui implements InventoryHolder {
 
     private static final MiniMessage MM = MiniMessage.miniMessage();
+    private final Inventory inventory;
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        Player player = (Player) sender;
-
+    public AuctionGui() {
         Component title = MM.deserialize("<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>ᴀᴜᴄᴛɪᴏɴ ʜᴏᴜѕᴇ</gradient></bold>");
-        Inventory hdv = Bukkit.createInventory(null, 54, title);
+        this.inventory = Bukkit.createInventory(this, 54, title);
 
-        fillGUI(hdv);
-
-        player.openInventory(hdv);
-
-        return true;
+        // Remplissage obligatoire à l'instanciation
+        fillGUI();
     }
 
-    private void fillGUI(Inventory hdv) {
+    public static void open(Player player) {
+        AuctionGui gui = new AuctionGui();
+        player.openInventory(gui.getInventory());
+    }
 
+    @Override
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    private void fillGUI() {
         // Mes items
         ItemStack myItemsButton = new ItemBuilder(Material.ENDER_CHEST)
                 .name("<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>ᴍʏ ɪᴛᴇᴍѕ</gradient></bold>")
@@ -46,9 +48,9 @@ public class AuctionCommand implements CommandExecutor {
                         "<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>Sell Items</gradient></bold><white> » <color:#B1F5F8>/ah sell</color>"
                 )
                 .build();
-        hdv.setItem(45, myItemsButton);
+        inventory.setItem(45, myItemsButton);
 
-// Tri
+        // Tri
         ItemStack sortingButton = new ItemBuilder(Material.GLOWSTONE_DUST)
                 .name("<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>ѕᴏʀᴛɪɴɢ</gradient></bold>")
                 .lore(
@@ -62,9 +64,9 @@ public class AuctionCommand implements CommandExecutor {
                         "<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>Click</gradient></bold><white> » <color:#B1F5F8>Change sorting</color>"
                 )
                 .build();
-        hdv.setItem(46, sortingButton);
+        inventory.setItem(46, sortingButton);
 
-// Page précédente
+        // Page précédente
         ItemStack previousPageButton = new ItemBuilder(Material.ARROW)
                 .name("<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>ᴘʀᴇᴠɪᴏᴜѕ ᴘᴀɢᴇ</gradient></bold>")
                 .lore(
@@ -75,9 +77,9 @@ public class AuctionCommand implements CommandExecutor {
                         "<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>Click</gradient></bold><white> » <color:#B1F5F8>Previous Page</color>"
                 )
                 .build();
-        hdv.setItem(48, previousPageButton);
+        inventory.setItem(48, previousPageButton);
 
-// Refresh
+        // Refresh
         ItemStack refreshButton = new ItemBuilder(Material.SUNFLOWER)
                 .name("<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>ʀᴇꜰʀᴇѕʜ</gradient></bold>")
                 .lore(
@@ -89,10 +91,10 @@ public class AuctionCommand implements CommandExecutor {
                         "<italic><dark_gray>Refreshes item list & prices</italic>"
                 )
                 .build();
-        hdv.setItem(49, refreshButton);
+        inventory.setItem(49, refreshButton);
 
-// Page suivante
-        ItemStack nextPageButton = new ItemBuilder(Material.ARROW) // Remplacé CHEST par ARROW pour la cohérence des pages
+        // Page suivante
+        ItemStack nextPageButton = new ItemBuilder(Material.ARROW)
                 .name("<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>ɴᴇxᴛ ᴘᴀɢᴇ</gradient></bold>")
                 .lore(
                         "",
@@ -102,9 +104,9 @@ public class AuctionCommand implements CommandExecutor {
                         "<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>Click</gradient></bold><white> » <color:#B1F5F8>Next Page</color>"
                 )
                 .build();
-        hdv.setItem(50, nextPageButton);
+        inventory.setItem(50, nextPageButton);
 
-// Historique
+        // Historique
         ItemStack historyButton = new ItemBuilder(Material.WRITABLE_BOOK)
                 .name("<bold><gradient:#6FFFFF:#81FFFA:#6FFFFF>ʜɪѕᴛᴏʀʏ</gradient></bold>")
                 .lore(
@@ -112,6 +114,6 @@ public class AuctionCommand implements CommandExecutor {
                         "<white>auction house history!"
                 )
                 .build();
-        hdv.setItem(53, historyButton);
+        inventory.setItem(53, historyButton);
     }
 }

@@ -1,4 +1,4 @@
-package me.outsid.auctionHouse;
+package me.outsid.auctionHouse.util; // <-- Changement du package
 
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -20,19 +20,25 @@ public class ItemBuilder {
     }
 
     public ItemBuilder name(String miniMessageText) {
-        meta.displayName(MM.deserialize(miniMessageText).decoration(TextDecoration.ITALIC, false));
+        if (meta != null) {
+            meta.displayName(MM.deserialize(miniMessageText).decoration(TextDecoration.ITALIC, false));
+        }
         return this;
     }
 
     public ItemBuilder lore(String... lines) {
-        meta.lore(Arrays.stream(lines)
-                .map(line -> MM.deserialize(line).decoration(TextDecoration.ITALIC, false))
-                .toList());
+        if (meta != null) {
+            meta.lore(Arrays.stream(lines)
+                    .map(line -> MM.deserialize(line).decoration(TextDecoration.ITALIC, false))
+                    .toList());
+        }
         return this;
     }
 
     public ItemStack build() {
-        item.setItemMeta(meta);
+        if (meta != null) {
+            item.setItemMeta(meta);
+        }
         return item;
     }
 }
