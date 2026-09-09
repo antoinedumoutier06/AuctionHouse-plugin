@@ -1,0 +1,6 @@
+storage:
+  file: database.db
+
+economy:
+  starting-balance: 0.0
+  currency-symbol: "$"

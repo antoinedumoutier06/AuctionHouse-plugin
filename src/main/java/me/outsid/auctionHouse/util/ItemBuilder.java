@@ -1,4 +1,4 @@
-package me.outsid.auctionHouse.util; // <-- Changement du package
+package me.outsid.auctionHouse.util;
 
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;

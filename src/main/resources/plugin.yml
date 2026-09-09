@@ -1,10 +1,22 @@
 name: AuctionHouse
-version: '${version}'
-
+version: '${project.version}'
 main: me.outsid.auctionHouse.AuctionHouse
-api-version: '26.1.2'
+api-version: '1.21'
 load: POSTWORLD
+
+libraries:
+  - com.zaxxer:HikariCP:5.1.0
+  - org.xerial:sqlite-jdbc:3.45.1.0
+
 commands:
   auction:
-    description: Ouvre l'hôtel des ventes
-    usage: /auction
+    description: Open Auction
+    usage: /<command> [sell <prix>]
+    aliases: [ah]
+  ecoadd:
+    description: Add money (In the console only)
+    usage: /ecoadd <player> <amount>
+  money:
+    description: Check your balance or another player's balance
+    aliases: [bal, balance]
+    usage: /money [player]
