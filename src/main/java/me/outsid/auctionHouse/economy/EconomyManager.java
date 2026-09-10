@@ -9,6 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.util.UUID;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class EconomyManager {
@@ -109,4 +112,27 @@ public class EconomyManager {
             plugin.getLogger().severe("Erreur sauvegarde solde " + uuid + " : " + e.getMessage());
         }
     }
+
+    public CompletableFuture<List<EconomyEntry>> getTopBalances(int limit) {
+        return CompletableFuture.supplyAsync(() -> {
+            List<EconomyEntry> topList = new ArrayList<>();
+            String sql = "SELECT uuid, balance FROM economy ORDER BY balance DESC LIMIT ?;";
+            try (Connection conn = db.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, limit);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        UUID uuid = UUID.fromString(rs.getString("uuid"));
+                        double balance = rs.getDouble("balance");
+                        topList.add(new EconomyEntry(uuid, balance));
+                    }
+                }
+            } catch (Exception e) {
+                plugin.getLogger().severe("Error fetching top balances: " + e.getMessage());
+            }
+            return topList;
+        });
+    }
+
+    public record EconomyEntry(UUID uuid, double balance) {}
 }

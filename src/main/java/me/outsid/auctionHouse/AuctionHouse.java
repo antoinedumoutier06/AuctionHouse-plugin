@@ -8,6 +8,8 @@ import me.outsid.auctionHouse.listener.EconomyListener;
 import me.outsid.auctionHouse.manager.AuctionManager;
 import me.outsid.auctionHouse.command.EcoAddCommand;
 import me.outsid.auctionHouse.command.MoneyCommand;
+import me.outsid.auctionHouse.command.BaltopCommand;
+import me.outsid.auctionHouse.command.PayCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AuctionHouse extends JavaPlugin {
@@ -43,6 +45,12 @@ public final class AuctionHouse extends JavaPlugin {
         }
         if (getCommand("money") != null) {
             getCommand("money").setExecutor(new MoneyCommand(this.economyManager));
+        }
+        if (getCommand("pay") != null) {
+            getCommand("pay").setExecutor(new PayCommand(this.economyManager));
+        }
+        if (getCommand("baltop") != null) {
+            getCommand("baltop").setExecutor(new BaltopCommand(this, this.economyManager));
         }
     }
 

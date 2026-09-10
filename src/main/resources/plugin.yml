@@ -20,3 +20,10 @@ commands:
     description: Check your balance or another player's balance
     aliases: [bal, balance]
     usage: /money [player]
+  pay:
+    description: Send money to another online player
+    usage: /pay <player> <amount>
+  baltop:
+    description: Display the wealthiest players
+    aliases: [balancetop, topmoney]
+    usage: /baltop
