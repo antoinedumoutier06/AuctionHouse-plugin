@@ -14,8 +14,11 @@ commands:
     usage: /<command> [sell <prix>]
     aliases: [ah]
   ecoadd:
-    description: Add money (In the console only)
+    description: Add money (Console only)
     usage: /ecoadd <player> <amount>
+  ecoset:
+    description: Set player balance (Console only)
+    usage: /ecoset
   money:
     description: Check your balance or another player's balance
     aliases: [bal, balance]
@@ -27,3 +30,4 @@ commands:
     description: Display the wealthiest players
     aliases: [balancetop, topmoney]
     usage: /baltop
+  
