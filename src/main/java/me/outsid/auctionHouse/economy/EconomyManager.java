@@ -135,4 +135,9 @@ public class EconomyManager {
     }
 
     public record EconomyEntry(UUID uuid, double balance) {}
+
+    public void setBalance(UUID uuid, double amount) {
+    balances.put(uuid, amount);
+    saveBalanceAsync(uuid, amount);
+}
 }
