@@ -10,6 +10,7 @@ import me.outsid.auctionHouse.command.EcoAddCommand;
 import me.outsid.auctionHouse.command.MoneyCommand;
 import me.outsid.auctionHouse.command.BaltopCommand;
 import me.outsid.auctionHouse.command.PayCommand;
+import me.outsid.auctionHouse.command.EcoSetCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AuctionHouse extends JavaPlugin {
@@ -52,6 +53,9 @@ public final class AuctionHouse extends JavaPlugin {
         if (getCommand("baltop") != null) {
             getCommand("baltop").setExecutor(new BaltopCommand(this, this.economyManager));
         }
+        if (getCommand("ecoset") != null) {
+            getCommand("ecoset").setExecutor(new EcoSetCommand(this.economyManager));
+}
     }
 
     @Override
