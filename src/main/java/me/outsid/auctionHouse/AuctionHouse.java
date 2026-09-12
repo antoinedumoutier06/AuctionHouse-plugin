@@ -11,6 +11,7 @@ import me.outsid.auctionHouse.command.MoneyCommand;
 import me.outsid.auctionHouse.command.BaltopCommand;
 import me.outsid.auctionHouse.command.PayCommand;
 import me.outsid.auctionHouse.command.EcoSetCommand;
+import me.outsid.auctionHouse.command.AHReloadCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AuctionHouse extends JavaPlugin {
