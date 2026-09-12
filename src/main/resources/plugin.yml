@@ -9,6 +9,10 @@ libraries:
   - org.xerial:sqlite-jdbc:3.45.1.0
 
 commands:
+  ahreload:
+    description: Reload the AuctionHouse configuration
+    permission: auctionhouse.admin
+    usage: /ahreload
   auction:
     description: Open Auction
     usage: /<command> [sell <prix>]
