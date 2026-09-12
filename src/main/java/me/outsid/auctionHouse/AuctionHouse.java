@@ -55,7 +55,10 @@ public final class AuctionHouse extends JavaPlugin {
         }
         if (getCommand("ecoset") != null) {
             getCommand("ecoset").setExecutor(new EcoSetCommand(this.economyManager));
-}
+        if (getCommand("ahreload") != null) {
+    getCommand("ahreload").setExecutor(new AHReloadCommand(this));
+            }
+        }
     }
 
     @Override
